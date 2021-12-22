@@ -26,7 +26,7 @@ class LFUCache(BaseCaching):
             self.temp_list.pop(pop)
             self.cache_data.pop(pop)
             print(f"DISCARD: {pop}")
-        if key not in self.temp_list:
+        if not (key in self.temp_list):
             self.temp_list[key] = 0
         else:
             self.temp_list[key] += 1
@@ -34,7 +34,7 @@ class LFUCache(BaseCaching):
     def get(self, key):
         """ Get an item by key
         """
-        if key is None or key not in self.cache_data:
+        if (key is None) or not (key in self.cache_data):
             return None
         self.temp_list[key] += 1
         return self.cache_data.get(key)

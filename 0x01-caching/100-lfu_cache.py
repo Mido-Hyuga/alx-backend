@@ -2,10 +2,10 @@
 """ caching system
     """
 
-BasicCachey = __import__("base_caching").BaseCaching
+from base_caching import BaseCaching
 
 
-class LFUCache(BasicCachey):
+class LFUCache(BaseCaching):
     """ caching system:
 
     Args:

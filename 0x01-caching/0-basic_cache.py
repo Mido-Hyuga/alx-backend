@@ -15,7 +15,7 @@ class BasicCache(BaseCaching):
         """
         Add an item in the cache
         """
-        if key is not None or item is not None:
+        if not (key is None or item is None):
             self.cache_data[key] = item
 
     def get(self, key):

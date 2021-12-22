@@ -27,7 +27,7 @@ class LRUCache(BaseCaching):
                 pop = self.temp_list[0]
                 self.temp_list = list(
                     filter(
-                        lambda x: x != self.temp_list[0],
+                        lambda x: x != pop,
                         self.temp_list))
                 self.cache_data.pop(pop)
                 print(f"DISCARD: {pop}")
@@ -35,7 +35,7 @@ class LRUCache(BaseCaching):
     def get(self, key):
         """ Get an item by key
         """
-        if key is None or key not in self.cache_data:
+        if (key is None) or not (key in self.cache_data):
             return None
         self.temp_list.insert(-1,
                               self.temp_list.pop(self.temp_list.index(key)))

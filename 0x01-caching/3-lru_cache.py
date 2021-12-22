@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 """ caching system
     """
 
@@ -12,17 +12,22 @@ class LRUCache(BasicCachey):
         LRUCache ([class]): [basic caching]
     """
 
+    def __init__(self) -> None:
+        """ initialize of class """
+        self.temp_list = []
+        super().__init__()
+
     def put(self, key, item):
         """ Add an item in the cache
         """
-        temp_list = [x for x in self.cache_data.keys()]
         self.cache_data[key] = item
-        temp_list.append(key)
-        if len(temp_list) > self.MAX_ITEMS:
-            if temp_list.count(key) > 1:
-                pop = key
-            else:
-                pop = temp_list[-2]
+        self.temp_list.append(key)
+        if len(self.cache_data.keys()) > self.MAX_ITEMS:
+            pop = self.temp_list[0]
+            self.temp_list = list(
+                filter(
+                    lambda x: x != self.temp_list[0],
+                    self.temp_list))
             self.cache_data.pop(pop)
             print(f"DISCARD: {pop}")
 
@@ -31,4 +36,6 @@ class LRUCache(BasicCachey):
         """
         if key is None or key not in self.cache_data:
             return None
+        self.temp_list.insert(-1,
+                              self.temp_list.pop(self.temp_list.index(key)))
         return self.cache_data.get(key)

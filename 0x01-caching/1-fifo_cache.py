@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 """ caching system
     """
 
@@ -15,11 +15,12 @@ class FIFOCache(BasicCachey):
     def put(self, key, item):
         """ Add an item in the cache
         """
-        self.cache_data[key] = item
-        temp_list = list(self.cache_data.keys())
-        if len(temp_list) > self.MAX_ITEMS:
-            self.cache_data.pop(temp_list[0])
-            print(f"DISCARD: {temp_list[0]}")
+        if key is not None or item is not None:
+            self.cache_data[key] = item
+            temp_list = list(self.cache_data.keys())
+            if len(temp_list) > self.MAX_ITEMS:
+                self.cache_data.pop(temp_list[0])
+                print(f"DISCARD: {temp_list[0]}")
 
     def get(self, key):
         """ Get an item by key

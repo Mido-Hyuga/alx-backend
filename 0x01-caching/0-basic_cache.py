@@ -11,6 +11,7 @@ class BasicCache(BasicCachey):
     Args:
         BasicCachey ([class]): [basic caching]
     """
+
     def put(self, key, item):
         """ Add an item in the cache
         """

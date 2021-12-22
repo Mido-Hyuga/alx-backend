@@ -4,12 +4,14 @@
 
 BasicCachey = __import__("base_caching").BaseCaching
 
+
 class FIFOCache(BasicCachey):
     """ caching system:
 
     Args:
         FIFOCache ([class]): [basic caching]
     """
+
     def put(self, key, item):
         """ Add an item in the cache
         """

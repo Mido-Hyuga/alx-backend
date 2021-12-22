@@ -2,12 +2,11 @@
 """ caching system
     """
 
-from base_caching import BaseCaching
+BasicCachey = __import__("base_caching").BaseCaching
 
 
-class LRUCache(BaseCaching):
+class LRUCache(BasicCachey):
     """ caching system:
-
     Args:
         LRUCache ([class]): [basic caching]
     """
@@ -29,7 +28,7 @@ class LRUCache(BaseCaching):
                     filter(
                         lambda x: x != self.temp_list[0],
                         self.temp_list))
-                self.cache_data.pop(pop)
+                self.cache_data.remove(pop)
                 print(f"DISCARD: {pop}")
 
     def get(self, key):

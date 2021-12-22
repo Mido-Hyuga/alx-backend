@@ -7,6 +7,7 @@ from base_caching import BaseCaching
 
 class LRUCache(BaseCaching):
     """ caching system:
+
     Args:
         LRUCache ([class]): [basic caching]
     """
@@ -28,7 +29,7 @@ class LRUCache(BaseCaching):
                     filter(
                         lambda x: x != self.temp_list[0],
                         self.temp_list))
-                self.cache_data.remove(pop)
+                self.cache_data.pop(pop)
                 print(f"DISCARD: {pop}")
 
     def get(self, key):

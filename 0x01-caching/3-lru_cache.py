@@ -37,6 +37,6 @@ class LRUCache(BaseCaching):
         """
         if (key is None) or not (key in self.cache_data):
             return None
-        self.temp_list.insert(-1,
+        self.temp_list.insert(len(self.temp_list),
                               self.temp_list.pop(self.temp_list.index(key)))
         return self.cache_data.get(key)

@@ -1,1 +1,1 @@
-# Advanced backend
+# i18n implementation in FLASK

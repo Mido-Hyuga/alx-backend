@@ -24,8 +24,7 @@ class LRUCache(BaseCaching):
             self.cache_data[key] = item
             self.temp_list.append(key)
             if len(self.cache_data.keys()) > self.MAX_ITEMS:
-                pop = self.temp_list[0]
-                self.temp_list.pop(0)
+                pop = self.temp_list.pop(0)
                 self.cache_data.pop(pop)
                 print(f"DISCARD: {pop}")
 

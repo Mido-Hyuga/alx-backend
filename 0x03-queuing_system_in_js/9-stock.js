@@ -1,6 +1,6 @@
-const express = require('express');
-const redis = require('redis');
-const util = require('util');
+import express from 'express';
+import redis from 'redis';
+import util from 'util';
 
 const client = redis.createClient();
 client.on('connect', () => {
@@ -81,5 +81,3 @@ app.get('/reserve_product/:itemId', async (req, res) => {
 });
 
 app.listen(1245);
-
-module.exports = app;

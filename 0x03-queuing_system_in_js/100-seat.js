@@ -1,7 +1,7 @@
-const express = require('express');
-const redis = require('redis');
-const kue = require('kue');
-const util = require('util');
+import express from 'express';
+import redis from 'redis';
+import util from 'util';
+import kue from 'kue';
 
 const client = redis.createClient();
 client.on('connect', () => {
@@ -31,17 +31,17 @@ app.get('/available_seats', async (req, res) => {
 
 app.get('/reserve_seat', (req, res) => {
   if (reservationEnabled === false) { res.json({ status: 'Reservation are blocked' }).end(); } else {
-    const reserve_seat = queue.create('reserve_seat').save((err) => {
+    const reserveS = queue.create('reserve_seat').save((err) => {
       if (!err) {
         res.json({ status: 'Reservation in process' });
       } else {
         res.json({ status: 'Reservation failed' }).end();
       }
     });
-    reserve_seat.on('complete', () => {
-      console.log(`Seat reservation job ${reserve_seat.id} completed`);
+    reserveS.on('complete', () => {
+      console.log(`Seat reservation job ${reserveS.id} completed`);
     }).on('failed', () => {
-      console.log(`Seat reservation job ${reserve_seat.id} failed: ERROR_MESSAGE`);
+      console.log(`Seat reservation job ${reserveS.id} failed: ERROR_MESSAGE`);
     });
   }
 });
@@ -63,5 +63,3 @@ app.get('/process', (req, res) => {
 });
 
 app.listen(1245);
-
-module.exports = app;

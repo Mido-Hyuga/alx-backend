@@ -1,4 +1,4 @@
-const kue = require('kue');
+import kue from 'kue';
 
 const queue = kue.createQueue();
 
@@ -10,7 +10,7 @@ function sendNotification(phoneNumber, message, djob, done) {
   djob.progress(0, 50);
   djob.progress(50, 100);
   console.log(`Sending notification to ${phoneNumber}, with message: ${message}`);
-  done();
+  return done();
 }
 
 queue.process('push_notification_code_2', 2, (job, done) => {

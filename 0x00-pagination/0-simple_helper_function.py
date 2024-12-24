@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Simple function to calculate start and end indexes
+function to calculate start and end indexes
 """
 
 from typing import Tuple
